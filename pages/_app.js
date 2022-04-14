@@ -1,7 +1,14 @@
-import '@styles/globals.css'
+import '@styles/globals.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+const Noop = ({children}) => <>{children}</>
+
+const MyApp = ({ Component, pageProps }) => {
+
+  const Layout = Component.Layout ?? Noop;
+
+  return <Layout>
+    <Component {...pageProps} />
+  </Layout>
 }
 
-export default MyApp
+export default MyApp;

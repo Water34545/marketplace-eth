@@ -1,12 +1,19 @@
 import {CourseHero, Keypoints, Curriculum} from "@components/course";
+import {BaseLayout} from '@components/layout';
 import {Modal} from "@components/common";
 
-export default function Course() {
+const Course = () => {
 
-  return <div className="relative max-w-7xl mx-auto px-4">
-    <CourseHero/>
+  return <>
+    <div className="py-4">
+      <CourseHero/>
+    </div>
     <Keypoints/>
     <Curriculum/>
     <Modal/>
-  </div>
+  </>
 }
+
+Course.Layout = BaseLayout;
+
+export default Course;
