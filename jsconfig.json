@@ -5,6 +5,7 @@
       "@pages/*" : ["pages/*"],
       "@styles/*" : ["styles/*"],
       "@components/*" : ["components/*"],
+      "@content/*" : ["content/*"],
     }
   }
 }
