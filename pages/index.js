@@ -1,12 +1,15 @@
-import {Breadcrumbs, Hero} from '@components/common';
-import {BaseLayout} from '@components/layout';
-import {WalletBar, EthRates} from '@components/web3';
-import {OrderCard} from '@components/order';
-import {CourseList} from '@components/course';
+import {Breadcrumbs, Hero} from '@components/ui/common';
+import {BaseLayout} from '@components/ui/layout';
+import {WalletBar, EthRates} from '@components/ui/web3';
+import {OrderCard} from '@components/ui/order';
+import {CourseList} from '@components/ui/course';
 import {getAllCourses} from '@content/courses/fetcher';
+import {useWeb3} from '@components/providers';
 
 const Home = ({courses}) => {
+  const {test} = useWeb3();
   return <>
+    <p>{test}</p>
     <Hero/>
     <Breadcrumbs/>
     <WalletBar/>

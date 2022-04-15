@@ -1,6 +1,6 @@
-import {CourseHero, Keypoints, Curriculum} from "@components/course";
-import {BaseLayout} from '@components/layout';
-import {Modal} from "@components/common";
+import {CourseHero, Keypoints, Curriculum} from "@components/ui/course";
+import {BaseLayout} from '@components/ui/layout';
+import {Modal} from "@components/ui/common";
 
 const Course = () => {
 

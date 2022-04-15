@@ -1,7 +1,8 @@
-import {Navbar, Footer} from '@components/common';
+import {Navbar, Footer} from '@components/ui/common';
+import {Web3Provider} from '@components/providers';
 
  const BaseLayout = ({children}) => {
-  return <>
+  return <Web3Provider>
   <div className="relative max-w-7xl mx-auto px-4">
     <Navbar/>
     <div className="fit">
@@ -9,7 +10,7 @@ import {Navbar, Footer} from '@components/common';
     </div>
   </div>
   <Footer/>
-</>
+</Web3Provider>
  }
 
  export default BaseLayout;
