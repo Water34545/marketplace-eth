@@ -9,7 +9,6 @@ import {useWeb3} from '@components/providers';
 const Home = ({courses}) => {
   const {web3, isLoading} = useWeb3();
   return <>
-    <p>{isLoading ? 'test' : 'no test'}</p>
     <Hero/>
     <Breadcrumbs/>
     <WalletBar/>

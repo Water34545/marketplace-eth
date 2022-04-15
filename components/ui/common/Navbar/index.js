@@ -1,6 +1,9 @@
+import { useWeb3 } from "@components/providers";
 import Link from "next/link";
 
 const Navbar = () => {
+  const {connect, isWeb3Loaded} = useWeb3();
+
   return <section>
     <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
       <nav className="relative" aria-label="Global">
@@ -20,9 +23,13 @@ const Navbar = () => {
             <Link href="/">
               <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">Wish List</a>
             </Link>
-            <a href="#" className="px-8 py-3 rounded border text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-              Connect Wallet
-            </a>
+            {isWeb3Loaded ? 
+            <span onClick={connect} className="px-8 py-3 rounded border text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              Connect
+            </span> :
+            <span onClick={connect} className="px-8 py-3 rounded border text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              Install Metamask
+            </span>}
           </div>
         </div>
       </nav>
