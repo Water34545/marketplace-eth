@@ -9,7 +9,7 @@ const Web3Provider = ({children}) => {
     provider: null,
     web3: null,
     contract: null,
-    isInitialized: false
+    isLoading: true
   });
    
   useEffect(() => {
@@ -21,12 +21,12 @@ const Web3Provider = ({children}) => {
           provider,
           web3,
           contract: null,
-          isInitialized: true
+          isLoading: false
         });
        } else {
         setWeb3Api(api => ({
           ...api,
-          isInitialized: true
+          isLoading: false
         }));
         console.error('install metamask')
        }
