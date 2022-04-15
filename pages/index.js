@@ -7,9 +7,9 @@ import {getAllCourses} from '@content/courses/fetcher';
 import {useWeb3} from '@components/providers';
 
 const Home = ({courses}) => {
-  const {test} = useWeb3();
+  const {web3, isInitialized} = useWeb3();
   return <>
-    <p>{test}</p>
+    <p>{isInitialized ? 'test' : 'no test'}</p>
     <Hero/>
     <Breadcrumbs/>
     <WalletBar/>
