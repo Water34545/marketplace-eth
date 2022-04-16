@@ -1,8 +1,11 @@
 import { useWeb3 } from "@components/providers";
 import Link from "next/link";
+import {Button} from "@components/ui/common";
+import {useRouter} from "next/router";
 
 const Navbar = () => {
-  const {connect, isWeb3Loaded} = useWeb3();
+  const {connect, isLoading, isWeb3Loaded} = useWeb3();
+  const router = useRouter();
 
   return <section>
     <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -23,13 +26,16 @@ const Navbar = () => {
             <Link href="/">
               <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">Wish List</a>
             </Link>
-            {isWeb3Loaded ? 
-            <span onClick={connect} className="px-8 py-3 rounded border text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            {isLoading ? 
+            <Button disabled onClick={connect}>
+              Loading...
+            </Button> : isWeb3Loaded ?
+            <Button onClick={connect}>
               Connect
-            </span> :
-            <span onClick={connect} className="px-8 py-3 rounded border text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            </Button> :
+            <Button onClick={() => window.open("https://metamask.io/download/", "_blank")}>
               Install Metamask
-            </span>}
+            </Button>}
           </div>
         </div>
       </nav>
