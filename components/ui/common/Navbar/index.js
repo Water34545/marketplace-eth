@@ -6,7 +6,6 @@ import {useAccount} from "@components/web3/hooks/useAccount"
 const Navbar = () => {
   const {connect, isLoading, isWeb3Loaded} = useWeb3();
   const {account} = useAccount();
-  console.log(account)
 
   return <section>
     <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -30,7 +29,10 @@ const Navbar = () => {
             {isLoading ? 
             <Button disabled onClick={connect}>
               Loading...
-            </Button> : isWeb3Loaded ?
+            </Button> : isWeb3Loaded ? account.data ?
+            <Button hoverable={false} className="cursr-default">
+              Hi! {account.isAdmin && 'admin'}
+            </Button> :
             <Button onClick={connect}>
               Connect
             </Button> :
@@ -41,6 +43,11 @@ const Navbar = () => {
         </div>
       </nav>
     </div>
+    {account.data && <div className="flex justify-end pt-2 sm:px-6 lg:px-8">
+      <div className="text-white bg-indigo-600 rounded-md p-2">
+        {account.data }
+      </div>
+    </div>}
   </section>
 }
 
