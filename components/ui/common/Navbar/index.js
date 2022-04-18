@@ -1,11 +1,11 @@
 import {useWeb3} from "@components/providers";
 import Link from "next/link";
 import {Button} from "@components/ui/common";
-import {useAccount} from "@components/hooks/web3"
+import {useAccount} from "@components/hooks/web3";
 import {useRouter} from "next/router";
 
 const Navbar = () => {
-  const {connect, isLoading, isWeb3Loaded} = useWeb3();
+  const {connect, isLoading, requareInstall} = useWeb3();
   const {account} = useAccount();
   const {pathname} =useRouter();
 
@@ -31,15 +31,17 @@ const Navbar = () => {
             {isLoading ? 
             <Button disabled onClick={connect}>
               Loading...
-            </Button> : isWeb3Loaded ? account.data ?
+            </Button> : 
+            account.data ?
             <Button hoverable={false} className="cursr-default">
               Hi! {account.isAdmin && 'admin'}
             </Button> :
-            <Button onClick={connect}>
-              Connect
-            </Button> :
+            requareInstall ?
             <Button onClick={() => window.open("https://metamask.io/download/", "_blank")}>
               Install Metamask
+            </Button> :
+            <Button onClick={connect}>
+              Connect
             </Button>}
           </div>
         </div>
