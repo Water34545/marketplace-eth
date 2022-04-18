@@ -5,8 +5,11 @@ import {WalletBar} from '@components/ui/web3';
 import {useAccount, useNetwork} from '@components/hooks/web3';
 import {CourseCard} from "@components/ui/course";
 import {Button} from '@components/ui/common';
+import {OrderModal} from '@components/ui/order';
+import {useState} from 'react';
 
 const Marketplace = ({courses}) => {
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const {account} = useAccount();
   const {network} = useNetwork();
 
@@ -22,12 +25,21 @@ const Marketplace = ({courses}) => {
         key={course.id} 
         course={course}
         Footer={() => <div className='mt-4'>
-          <Button variant='lightPurple'>
+          <Button
+            onClick={() => setSelectedCourse(course)} 
+            variant='lightPurple'
+          >
             Purchase
           </Button>
         </div>}
       />}
     </CourseList>
+    {selectedCourse && 
+      <OrderModal
+        course={selectedCourse}
+        onClose={() => setSelectedCourse(null)}
+      />
+    }
   </>
 };
 
