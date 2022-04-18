@@ -1,10 +1,9 @@
 import {Breadcrumbs, Hero} from '@components/ui/common';
-import {BaseLayout} from '@components/ui/layout';
 import {WalletBar, EthRates} from '@components/ui/web3';
 import {OrderCard} from '@components/ui/order';
 import {CourseList} from '@components/ui/course';
-import {getAllCourses} from '@content/courses/fetcher';
 import {useWeb3} from '@components/providers';
+import {CourseCard} from "@components/ui/course";
 
 const Home = ({courses}) => {
   const {web3, isLoading} = useWeb3();
@@ -14,7 +13,9 @@ const Home = ({courses}) => {
     <WalletBar/>
     <EthRates/>
     <OrderCard/>
-    <CourseList courses={courses}/>
+    <CourseList courses={courses}>
+      {course => <CourseCard key={course.id} course={course}/>}
+    </CourseList>
   </>
 };
 
