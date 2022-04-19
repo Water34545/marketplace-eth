@@ -21,7 +21,7 @@ const Marketplace = ({courses}) => {
         course={course}
         Footer={() => <div className='mt-4'>
           <Button
-            disabeled={!canPurchaseCourse}
+            disabeled={`${!canPurchaseCourse}`}
             onClick={() => setSelectedCourse(course)} 
             variant='lightPurple'
           >
