@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = ({course, Footer}) => {
+const Card = ({course, disabeled, Footer}) => {
   return <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
     <div className="flex h-full">
       <div className="flex-1 h-full next-image-wrapper">
         <Image 
-          className="object-cover" 
+          className={`object-cover ${disabeled && 'filter grayscale'}`}
           layout="responsive"
           width="200"
           height="230"
