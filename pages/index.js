@@ -1,4 +1,6 @@
+import {BaseLayout} from '@components/ui/layout';
 import {Breadcrumbs, Hero} from '@components/ui/common';
+import {getAllCourses} from '@content/courses/fetcher';
 import {WalletBar, EthRates} from '@components/ui/web3';
 import {OrderCard} from '@components/ui/order';
 import {CourseList} from '@components/ui/course';
