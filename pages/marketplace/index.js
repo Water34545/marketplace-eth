@@ -12,6 +12,10 @@ const Marketplace = ({courses}) => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const {canPurchaseCourse} = useWalletInfo();
 
+  const purchaseCourse = (order) => {
+    console.log(order);
+  };
+
   return <>
     <MarketHeader/>
     <CourseList courses={courses}>
@@ -33,6 +37,7 @@ const Marketplace = ({courses}) => {
     {selectedCourse && 
       <OrderModal
         course={selectedCourse}
+        onSubmit={purchaseCourse}
         onClose={() => setSelectedCourse(null)}
       />
     }
