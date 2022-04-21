@@ -9,17 +9,21 @@ const OwnedCourses = ({courses}) => {
   const {account} = useAccount();
   const {ownedCourses} = useOwnedCourses(courses, account.data);
 
+  if(!ownedCourses.data) return
+
   return <>
     <MarketHeader/>
     <section className="grid grid-cols-1">
-      <OwnedCourseCard>
-        <Massage>
-          My massage
-        </Massage>
-        <Button>
-          Watch the course
-        </Button>
-      </OwnedCourseCard>
+      {ownedCourses.data.map(course => 
+        <OwnedCourseCard key={course.id} course={course}>
+          <Massage>
+            My massage
+          </Massage>
+          <Button>
+            Watch the course
+          </Button>
+        </OwnedCourseCard>
+      )}
     </section>
   </>
 };

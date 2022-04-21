@@ -1,8 +1,9 @@
-import useSWR from "swr";
+import useSWR from 'swr';
+import {normilizedOwnedCourse} from '@utils/normalize'
 
 export const handler = (web3, contract) => (courses, account) => {
   const swrRes = useSWR(() => 
-    (web3 && contract && account) ? "web3/ownedCourses" : null,
+    (web3 && contract && account) ? `web3/ownedCourses/${account}` : null,
     async () => {
       const ownedCourses = [];
       for(let i = 0; i < courses.length; i++) {
@@ -17,10 +18,10 @@ export const handler = (web3, contract) => (courses, account) => {
         );
 
         const ownedCourse = await contract.methods.getCourseByHash(courseHash).call();
-        console.log(ownedCourse)
 
         if(ownedCourse.owner !== '0x0000000000000000000000000000000000000000') {
-          ownedCourses.push(ownedCourse);
+          const normolized = normilizedOwnedCourse(web3)(course, ownedCourse);
+          ownedCourses.push(normolized);
         }
       }
 
