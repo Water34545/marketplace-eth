@@ -27,10 +27,10 @@ contract CourseMarketplace {
         setContractOwner(msg.sender);
     }
 
-    ///Course has already an Owner!
+    /// Course has already a Owner!
     error CourseHasOwner();
 
-    ///You are not an Owner!
+    /// Only owner has an access!
     error OnlyOwner();
 
     modifier onlyOwner() {
@@ -66,7 +66,7 @@ contract CourseMarketplace {
         return totalOwnedCourses;
     }
 
-    function GetCoursesHashAtIndex(uint256 index)
+    function getCourseHashAtIndex(uint256 index)
         external
         view
         returns (bytes32)
@@ -74,7 +74,7 @@ contract CourseMarketplace {
         return ownedCourseHash[index];
     }
 
-    function GetCourseByHash(bytes32 courseHash)
+    function getCourseByHash(bytes32 courseHash)
         external
         view
         returns (Course memory)
