@@ -6,14 +6,21 @@ import { loadContract } from '@utils/loadContract';
 
 const Web3Context = createContext(null);
 
+const createWeb3State = ({provider, web3, contract, isLoading}) => ({
+  web3,
+  provider,
+  contract,
+  isLoading,
+  hooks: setupHooks({web3, provider, contract})
+});
+
 const Web3Provider = ({children}) => {
-  const [web3Api, setWeb3Api] = useState({
+  const [web3Api, setWeb3Api] = useState(createWeb3State({
     provider: null,
     web3: null,
     contract: null,
     isLoading: true,
-    hooks: setupHooks(),
-  });
+  }));
    
   useEffect(() => {
     const loadProvider = async() => {
@@ -21,14 +28,12 @@ const Web3Provider = ({children}) => {
        if(provider) {
         const web3 = new Web3(provider);
         const contract = await loadContract('CourseMarketplace', web3);
-        console.log(contract)
-        setWeb3Api({
+        setWeb3Api(createWeb3State({
           provider,
           web3,
-          contract: contract,
+          contract,
           isLoading: false,
-          hooks: setupHooks(web3, provider),
-        });
+        }));
        } else {
         setWeb3Api(api => ({
           ...api,
@@ -46,9 +51,9 @@ const Web3Provider = ({children}) => {
       ...web3Api,
       requareInstall: !isLoading && !web3,
       connect: provider ? 
-      async() => {
+      async () => {
         try {
-          await provider.request({method: "eth_requestAccounts "})
+          await provider.request({method: "eth_requestAccounts"})
         } catch {
           location.reload();
         }

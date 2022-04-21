@@ -15,6 +15,11 @@ export const useNetwork = () => {
   return {network: swrRes}
 }
 
+export const useOwnedCourses = (...args) => {
+  const swrRes = enchanceHook(useHooks(hooks => hooks.useOwnedCourses)(...args));
+  return {ownedCourses: swrRes}
+}
+
 export const useWalletInfo = () => {
   const {account} = useAccount();
   const {network} = useNetwork();
