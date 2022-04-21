@@ -9,11 +9,11 @@ contract CourseMarketplace {
     }
 
     struct Course {
-        uint256 id;
-        uint256 price;
-        bytes32 proof;
-        address owner;
-        State state;
+        uint256 id; // 32
+        uint256 price; // 32
+        bytes32 proof; // 32
+        address owner; // 20
+        State state; // 1
     }
 
     mapping(bytes32 => Course) private ownedCourses;
