@@ -163,7 +163,7 @@ const OrderModal = ({course, onClose, onSubmit}) => {
       <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex">
         <Button
           disabled={formState.isDisabled}
-          onClick={onSubmit}
+          onClick={() => onSubmit(order)}
         >
           Submit
         </Button>
