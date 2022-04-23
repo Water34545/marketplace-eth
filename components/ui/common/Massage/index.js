@@ -22,11 +22,11 @@ const Message = ({children, type = "success", size = "md"}) => {
   const messageSizeClass = SIZES[size]
 
   return (
-    <div className={`bg-${messageType}-100 rounded-xl mb-3`}>
-      <div className="max-w-7xl mx-auto py-2 px-1">
+    <div className={`bg-${messageType}-100 rounded-xl mb-8`}>
+      <div className="max-w-7xl mx-auto py-2 px-4">
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
-            <div className={`ml-3 ${messageSizeClass} font-medium text-${messageType}-900`}>
+            <div className={`${messageSizeClass} font-medium text-${messageType}-900`}>
               <span className="hidden md:inline">
                 { children }
               </span>

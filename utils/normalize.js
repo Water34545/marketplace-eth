@@ -8,7 +8,7 @@ export const normilizedOwnedCourse = web3 => (course, ownedCourse) => ({
   ...course,
   ownedCourseID: ownedCourse.id,
   proof: ownedCourse.proof,
-  owned: ownedCourse.owned,
+  owned: ownedCourse.owner,
   price: web3.utils.fromWei(ownedCourse.price),
   state: COURSES_STATE[ownedCourse.state]
 })
