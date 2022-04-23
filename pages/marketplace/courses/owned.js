@@ -5,6 +5,7 @@ import {Button, Massage} from "@components/ui/common";
 import {useAccount, useOwnedCourses} from "@components/hooks/web3";
 import {getAllCourses} from '@content/courses/fetcher';
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 const OwnedCourses = ({courses}) => {
   const router = useRouter();
@@ -16,11 +17,22 @@ const OwnedCourses = ({courses}) => {
   return <>
     <MarketHeader/>
     <section className="grid grid-cols-1">
+      {ownedCourses.hasInitialResponse && (
+        !ownedCourses.data || ownedCourses?.data.length === 0
+      ) &&
+        <div>
+          <Massage type="warning">
+            You do not owned any courses
+            <Link href="/marketplace">
+                <a className="font-normal hover:underline">
+                  <i> Purchase Course</i>
+                </a>
+            </Link>
+          </Massage>
+        </div>
+      }
       {ownedCourses.data.map(course => 
         <OwnedCourseCard key={course.id} course={course}>
-          <Massage>
-            My massage
-          </Massage>
           <Button
             onClick={() => router.push(`/courses/${course.slug}`)}
           >
