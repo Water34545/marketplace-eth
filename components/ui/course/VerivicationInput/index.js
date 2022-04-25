@@ -4,7 +4,7 @@ import {Button, Massage} from "@components/ui/common";
 
 const VerivicationInput = ({hash, proof}) => {
   const {web3} = useWeb3();
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState("");
   const [isProofed, setIsProofed] = useState(null);
 
   const verifyCourse = (email, hash, proof) => {

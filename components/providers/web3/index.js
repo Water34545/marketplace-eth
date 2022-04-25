@@ -2,7 +2,7 @@ import {createContext, useContext, useEffect, useState, useMemo} from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from 'web3';
 import {setupHooks} from './hooks/setupHooks';
-import { loadContract } from '@utils/loadContract';
+import {loadContract} from '@utils/loadContract';
 
 const Web3Context = createContext(null);
 
