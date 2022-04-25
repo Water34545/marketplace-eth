@@ -3,12 +3,14 @@ import {BaseLayout} from '@components/ui/layout';
 import {Massage, Modal} from "@components/ui/common";
 import {getAllCourses} from "@content/courses/fetcher";
 import {useAccount, useOwnedCourse} from "@components/hooks/web3";
+import { useWeb3 } from "@components/providers";
 
 const Course = ({course}) => {
+  const isLoading = useWeb3();
   const {account} = useAccount();
   const {ownedCourse} = useOwnedCourse(course, account.data);
   const courseState = ownedCourse.data?.state;
-  const isLock = courseState != 'activated';
+  const isLock = !courseState ||  courseState != 'activated';
 
   return <>
     <div className="py-4">
@@ -39,7 +41,7 @@ const Course = ({course}) => {
         </Massage>
       }
     </div>}
-    <Curriculum locked={isLock} courseState={courseState}/>
+    <Curriculum locked={isLock} courseState={courseState} isLoading={isLoading}/>
     <Modal/>
   </>
 }
