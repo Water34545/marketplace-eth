@@ -35,9 +35,15 @@ export const useOwnedCourses = (...args) => {
   const swrRes = enchanceHook(useHooks(hooks => hooks.useOwnedCourses)(...args));
   return {ownedCourses: swrRes}
 }
+
 export const useOwnedCourse = (...args) => {
   const swrRes = enchanceHook(useHooks(hooks => hooks.useOwnedCourse)(...args));
   return {ownedCourse : swrRes}
+}
+
+export const useManageCourses = (...args) => {
+  const swrRes = enchanceHook(useHooks(hooks => hooks.useManagedCourses)(...args));
+  return {managedCourses : swrRes}
 }
 
 export const useWalletInfo = () => {

@@ -16,7 +16,7 @@ export const handler = (web3, provider) => () => {
         throw new Error("Cannot retreive an account. Please refresh the browser");
       }
 
-      return accounts;
+      return account;
     }
   );
   
