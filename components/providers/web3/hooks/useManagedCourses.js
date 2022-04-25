@@ -13,7 +13,7 @@ export const handler = (web3, contract) => account => {
         const course = await contract.methods.getCourseByHash(courseHash).call();
 
         if(course) {
-          const normilized = normilizedOwnedCourse(web3)({hesh: courseHash}, course)
+          const normilized = normilizedOwnedCourse(web3)({hash: courseHash}, course)
           courses.push(normilized);
         }
       }
