@@ -8,7 +8,6 @@ const ManageCourses = () => {
   const {account} = useAccount();
   const {managedCourses} = useManageCourses(account);
 
-  console.log(managedCourses);
   return <>
     <MarketHeader/>
     <CourseFilter/>
