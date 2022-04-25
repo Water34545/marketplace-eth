@@ -6,3 +6,4 @@ export {default as CourseCard} from "./Card";
 export {default as OwnedCourseCard} from "./Card/Owned";
 export {default as ManagedCourseCard} from "./Card/Managed";
 export {default as CourseFilter} from "./Filter";
+export {default as VerivicationInput} from "./VerivicationInput";
