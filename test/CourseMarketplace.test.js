@@ -181,5 +181,5 @@ contract("CourseMarketplace", accounts => {
     it("should NOT be able to repurchase purchased course", async () => {
       await catchRevert(_contract.repurchaseCourse(courseHash2, {from: buyer}));
     })
-
+  })
 })
