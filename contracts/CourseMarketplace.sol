@@ -39,6 +39,9 @@ contract CourseMarketplace {
     /// Course has invalid State!
     error InvalidState();
 
+    /// Sender is not course owner!
+    error SenderIsNotCourseOwner();
+
     modifier onlyOwner() {
         if (msg.sender != getContractOwner()) {
             revert OnlyOwner();
@@ -76,6 +79,25 @@ contract CourseMarketplace {
         }
 
         course.state = State.Activated;
+    }
+
+    function repurchaseCourse(bytes32 courseHash) external payable {
+        if (!isCourseCreated(courseHash)) {
+            revert CourseIsNotCreated();
+        }
+
+        if (!hasCourseOwnership(courseHash)) {
+            revert SenderIsNotCourseOwner();
+        }
+
+        Course storage course = ownedCourses[courseHash];
+
+        if (course.state != State.Deactivated) {
+            revert InvalidState();
+        }
+
+        course.state = State.Purchased;
+        course.price = msg.value;
     }
 
     function transferOwnership(address newOwner) external onlyOwner {
