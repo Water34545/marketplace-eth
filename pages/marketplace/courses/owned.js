@@ -1,7 +1,7 @@
 import {MarketHeader} from "@components/ui/marketplace";
 import {OwnedCourseCard} from "@components/ui/course";
 import {BaseLayout} from '@components/ui/layout';
-import {Button, Massage} from "@components/ui/common";
+import {Button, Message} from "@components/ui/common";
 import {useAccount, useOwnedCourses} from "@components/hooks/web3";
 import {getAllCourses} from '@content/courses/fetcher';
 import {useRouter} from "next/router";
@@ -20,24 +20,24 @@ const OwnedCourses = ({courses}) => {
     <MarketHeader/>
     <section className="grid grid-cols-1">
       {ownedCourses.isEmpty &&
-        <Massage type="warning">
+        <Message type="warning">
           You do not owned any courses
           <Link href="/marketplace">
             <a className="font-normal hover:underline">
               <i> Purchase Course</i>
             </a>
           </Link>
-        </Massage>
+        </Message>
       }
       {account.isEmpty &&
-        <Massage type="warning">
+        <Message type="warning">
           Please connect to the metamask
-        </Massage>
+        </Message>
       }
       {requireInstall &&
-        <Massage type="warning">
+        <Message type="warning">
           Please install to the metamask
-        </Massage>
+        </Message>
       }
       {ownedCourses.data.map(course => 
         <OwnedCourseCard key={course.id} course={course}>

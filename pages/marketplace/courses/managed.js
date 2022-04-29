@@ -14,7 +14,7 @@ const ManagedCourses = () => {
     try {
       await contract.methods[method](courseHash).send({from: account.data});
     } catch(e) {
-      console.log(e.massage);
+      console.log(e.message);
     }
   }
 

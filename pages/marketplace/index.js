@@ -78,6 +78,7 @@ const Marketplace = ({courses}) => {
           const owned = ownedCourses.lookup[course.id];
 
           if (owned) {
+            console.log(owned.state === "purchased")
             return <>
               <Button
                 disabled={true}
@@ -85,21 +86,18 @@ const Marketplace = ({courses}) => {
                 Owned
               </Button>
               <div className="mt-1">
-                { owned.state === "activated" &&
+                {owned.state === "activated" &&
                   <Message size="sm">
                     Activated
-                  </Message>
-                }
-                { owned.state === "deactivated" &&
+                  </Message>}
+                {owned.state === "deactivated" &&
                   <Message type="danger" size="sm">
                     Deactivated
-                  </Message>
-                }
-                { owned.state === "purchased" &&
+                  </Message>}
+                {owned.state === "purchased" &&
                   <Message type="warning" size="sm">
                     Waiting for Activation
-                  </Message>
-                }
+                  </Message>}
               </div>
             </>
           }

@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useWeb3} from "@components/providers";
-import {Button, Massage} from "@components/ui/common";
+import {Button, Message} from "@components/ui/common";
 
 const VerivicationInput = ({hash, proof}) => {
   const {web3} = useWeb3();
@@ -33,8 +33,8 @@ const VerivicationInput = ({hash, proof}) => {
         Verify
       </Button>
     </div>
-    {isProofed && <Massage type="success">Verify</Massage>}
-    {isProofed === false && <Massage type="danger">Wrong Proof!</Massage>}
+    {isProofed && <Message type="success">Verify</Message>}
+    {isProofed === false && <Message type="danger">Wrong Proof!</Message>}
   </>
 }
 
