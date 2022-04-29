@@ -78,7 +78,6 @@ const Marketplace = ({courses}) => {
           const owned = ownedCourses.lookup[course.id];
 
           if (owned) {
-            console.log(owned.state === "purchased")
             return <>
               <Button
                 disabled={true}
