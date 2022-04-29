@@ -10,12 +10,20 @@ const ManagedCourses = () => {
   const {account} = useAdmin({riderectTo: "/marketplace"});
   const {managedCourses} = useManageCourses(account);
 
-  const activateCourse = async courseHash => {
+  const changeCourseHash = async (courseHash, method) => {
     try {
-      await contract.methods.activateCourse(courseHash).send({from: account.data});
+      await contract.methods[method](courseHash).send({from: account.data});
     } catch(e) {
       console.log(e.massage);
     }
+  }
+
+  const activateCourse = courseHash => {
+    changeCourseHash(courseHash, "activateCourse");
+  }
+
+  const deactivateCourse = courseHash => {
+    changeCourseHash(courseHash, "deactivateCourse");
   }
 
   if(!account.isAdmin) return null;
@@ -29,7 +37,7 @@ const ManagedCourses = () => {
           <VerivicationInput hash={course.hash} proof={course.proof}/>
           {course.state === "purchased" && <div className="mt-2">
             <Button variant="green" onClick={() => activateCourse(course.hash)}>Activate</Button>
-            <Button variant="red">Deactivate</Button>
+            <Button variant="red" onClick={() => deactivateCourse(course.hash)}>Deactivate</Button>
           </div>}
         </ManagedCourseCard>
       )}
