@@ -7,7 +7,7 @@ import {handler as createManagedCoursesHook} from "./useManagedCourses";
 export const setupHooks = ({web3, provider, contract}) => {
   return {
     useAccount: createUseAccountHook(web3, provider),
-    useNetwork: createUseNetworkHook(web3, provider),
+    useNetwork: createUseNetworkHook(web3),
     useOwnedCourses: createOwnedCoursesHook(web3, contract),
     useOwnedCourse: createOwnedCourseHook(web3, contract),
     useManagedCourses: createManagedCoursesHook(web3, contract),
