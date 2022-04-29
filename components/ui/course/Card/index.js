@@ -21,7 +21,7 @@ const Card = ({course, disabeled, Footer}) => {
             {course.title}
           </a>
         </Link>
-        <p className="mt-2 text-sm sm:text-base text-gray-500">
+        <p className="my-2 text-sm sm:text-base text-gray-500">
           {course.description.substring(0, 70)}...
         </p>
         {Footer && <Footer/>}

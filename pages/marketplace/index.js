@@ -4,14 +4,14 @@ import {CourseList} from '@components/ui/course';
 import {getAllCourses} from '@content/courses/fetcher';
 import {useWalletInfo} from '@components/hooks/web3';
 import {CourseCard} from "@components/ui/course";
-import {Button} from '@components/ui/common';
+import {Button, Loader} from '@components/ui/common';
 import {OrderModal} from '@components/ui/order';
 import {MarketHeader} from '@components/ui/marketplace';
 import {useWeb3} from '@components/providers';
 
 const Marketplace = ({courses}) => {
-  const {web3, contract} = useWeb3();
-  const {canPurchaseCourse, account} = useWalletInfo();
+  const {web3, contract, requireInstall} = useWeb3();
+  const {hasConnectedWallet, isConnecting, account} = useWalletInfo();
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   const purchaseCourse = async order => {
@@ -44,17 +44,37 @@ const Marketplace = ({courses}) => {
     <CourseList courses={courses}>
       {course => <CourseCard 
         key={course.id} 
-        disabeled={!canPurchaseCourse}
+        disabeled={!hasConnectedWallet}
         course={course}
-        Footer={() => <div className='mt-4'>
-          <Button
-            disabeled={`${!canPurchaseCourse}`}
+        Footer={() => {
+
+          if (requireInstall) {
+            return (
+              <Button
+                disabled={true}
+                variant="lightPurple">
+                Install
+              </Button>
+            )
+          }
+
+          if (isConnecting) {
+            return (
+              <Button
+                disabled={true}
+                variant="lightPurple">
+                <Loader size="sm" />
+              </Button>
+            )
+          }
+          
+          return <Button
+            disabeled={`${!hasConnectedWallet}`}
             onClick={() => setSelectedCourse(course)} 
             variant='lightPurple'
           >
             Purchase
-          </Button>
-        </div>}
+          </Button>}}
       />}
     </CourseList>
     {selectedCourse && 
