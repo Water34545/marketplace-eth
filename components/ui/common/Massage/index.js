@@ -12,7 +12,6 @@ const SIZES = {
   lg: "text-lg"
 }
 
-
 const Message = ({children, type = "success", size = "md"}) => {
   const [isDisplayed, setIsDisplayed] = useState(true)
 
@@ -23,7 +22,7 @@ const Message = ({children, type = "success", size = "md"}) => {
 
   return (
     <div className={`bg-${messageType}-100 rounded-xl mb-8`}>
-      <div className="max-w-7xl mx-auto py-2 px-4">
+      <div className="max-w-7xl mx-auto py-2 px-1">
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
             <div className={`${messageSizeClass} font-medium text-${messageType}-900`}>
