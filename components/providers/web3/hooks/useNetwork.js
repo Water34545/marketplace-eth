@@ -28,7 +28,7 @@ export const handler = (web3, provider) => () => {
   );
 
   useEffect(() => {
-    const mutator = chainId => {mutate(parseInt(chainId, 16))}
+    const mutator = chainId => window.location.reload();
     provider?.on('chainChanged', mutator);
     return () => {
       provider?.removeListener('chainChanged', mutator);
