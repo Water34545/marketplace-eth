@@ -8,6 +8,7 @@ const VerivicationInput = ({hash, proof}) => {
   const [isProofed, setIsProofed] = useState(null);
 
   const verifyCourse = (email, hash, proof) => {
+    if(!email) return;
     const emailHash = web3.utils.sha3(email);
     const proofToChek = web3.utils.soliditySha3(
       {type: 'bytes32', value: emailHash},
