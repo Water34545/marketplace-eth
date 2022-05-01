@@ -1,3 +1,5 @@
+import {useState} from "react";
+import {withToast} from "@utils/toast";
 import {MarketHeader} from "@components/ui/marketplace";
 import {Button, Message} from "@components/ui/common";
 import {CourseFilter, ManagedCourseCard, VerivicationInput} from "@components/ui/course";
@@ -5,7 +7,6 @@ import {BaseLayout} from '@components/ui/layout';
 import {useAdmin, useManageCourses} from "@components/hooks/web3";
 import {useWeb3} from "@components/providers";
 import {normilizedOwnedCourse} from "@utils/normalize";
-import {useState} from "react";
 
 const ManagedCourses = () => {
   const {contract, web3} = useWeb3();
@@ -16,18 +17,19 @@ const ManagedCourses = () => {
 
   const changeCourseHash = async (courseHash, method) => {
     try {
-      await contract.methods[method](courseHash).send({from: account.data});
+      const result = await contract.methods[method](courseHash).send({from: account.data});
+      return result;
     } catch(e) {
-      console.log(e.message);
+      throw new Error(e.message);
     }
   }
 
   const activateCourse = courseHash => {
-    changeCourseHash(courseHash, "activateCourse");
+    withToast(changeCourseHash(courseHash, "activateCourse"));
   }
 
   const deactivateCourse = courseHash => {
-    changeCourseHash(courseHash, "deactivateCourse");
+    withToast(changeCourseHash(courseHash, "deactivateCourse"));
   }
 
   const searchCourse = async hash => {
