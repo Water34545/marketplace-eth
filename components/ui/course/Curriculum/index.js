@@ -1,7 +1,7 @@
 import { Loader } from "@components/ui/common";
 import Link from "next/link";
 
-const Curriculum = ({locked, courseState}) => {
+const Curriculum = ({locked, courseState, isLoading}) => {
   const lectures = [
     "How to init App",
     "How to get a help",
