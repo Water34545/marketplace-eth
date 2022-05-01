@@ -6,6 +6,18 @@ const STATE_COLORS = {
   deactivated: "red"
 }
 
+const BG_CLASSES = {
+  purchased: "bg-indigo-200",
+  activated: "bg-green-200",
+  deactivated: "bg-red-200"
+}
+
+const TEXT_CLASSES = {
+  purchased: "text-indigo-700",
+  activated: "text-green-700",
+  deactivated: "text-red-700"
+}
+
 const OwnedCourseCard = ({children, course}) => {
   const stateColor = STATE_COLORS[course.state]
 
@@ -28,7 +40,7 @@ const OwnedCourseCard = ({children, course}) => {
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               <span className="mr-2">{course.title}</span>
-              <span className={`text-xs text-${stateColor}-700 bg-${stateColor}-200 rounded-full p-2`}>
+              <span className={`text-xs ${TEXT_CLASSES[stateColor]} ${BG_CLASSES[stateColor]} rounded-full p-2`}>
                 {course.state}
               </span>
             </h3>
